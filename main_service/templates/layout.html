@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Министерство прогнозов бюджета</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Заголовок -->
+    <div class="ui container grid">
+        <div class="row ui dividing header">
+            <div class="three wide column">
+                <img class="ui small image" src={{url_for('static', path='/logo.jpg')}}>
+            </div>
+            <div class="twelve wide column" style="margin-top: 30px">
+                <h1 class="h1">Министерство прогнозов бюджета города Санкт-Петербург</h1>
+                <h2 style="color: grey">By Fintechtim Team</h2>
+            </div>
+            <div class="five wide column"></div>
+          </div>
+    </div>
+    <!-- Линки -->
+    <div class="ui container grid menu">
+            <a class="ui selectable item" href='http://127.0.0.1:8000/'>
+                Главная
+            </a>
+            <a class="ui selectable item" href='http://127.0.0.1:8000/budget_spb'>
+                Бюджет в спб
+            </a>
+    </div>
+    <!--Сменяемый блок-->
+    <div style="height: 1500px">
+    {% block content %}
+
+    {% endblock %}
+    </div>
+    <!--Футер-->
+
+</body>
+</html>
