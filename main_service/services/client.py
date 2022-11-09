@@ -1,23 +1,30 @@
 from typing import List
 from fastapi import Depends
-import pickle
-import numpy as np
 
+import pickle
 import os
 
 from ..database import Session, get_session
 from .. import tables
 
-class BudgetService:
+class ClientService:
     def __init__(self, session: Session = Depends(get_session)):
-        print(os.getcwd())
-        with open(os.getcwd()+'/main_service/ml/model.pkl','rb') as wr:
-            self.model = pickle.load(wr)
         self.session = session
 
-    def get_all(self) -> tables.Budget:
-        query = self.session.query(tables.Budget)
-        budgets = query.all()
+    def _get_total_incomes(self):
+
+
+    def get_common(self, client_id: int) -> tables.Client:
+        query = self.session.query(tables.Client)
+        client = (
+            self.session
+                .query(tables.Client)
+                .filter_by(client_id=client_id)
+                .first()
+        )
+
+
+
         return budgets
 
     def predict(self) -> List[float]:

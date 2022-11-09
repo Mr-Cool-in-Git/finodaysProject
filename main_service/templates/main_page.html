@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+    {% block content %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <div class="ui container two column grid">
+        <div class="column">
+
+            <table name="Общий баланс" class="ui selectable celled left aligned table table-hover" id="bootstrap-table">
+                <thead>
+                    <tr>
+                        <th>Общее</th>
+                        <th>Значение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <TR>
+                        <TD class="c1">{{item.option}}</TD>
+                        {% if item.is_predict!=null %}
+                          <TD class="c2"><SPAN>{{item.amount}}</SPAN></TD>
+                        {% else %}
+                          <TD class="c2"><SPAN>0</SPAN></TD>
+                        {% endif %}
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+
+        </div>
+    </div>
+    {% endblock %}
+
+
+

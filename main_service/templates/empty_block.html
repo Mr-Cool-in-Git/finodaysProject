@@ -1,5 +1,53 @@
 {% extends "layout.html" %}
 
     {% block content %}
+<!--    <input type="text" id="login_input" onkeyup="myFunction()" placeholder="Логин">-->
+<!--    <input type="text" id="password_input" onkeyup="myFunction()" placeholder="Пароль">-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+
+    <div class="form_auth_block">
+      <div class="form_auth_block_content">
+        <p class="form_auth_block_head_text">Авторизация</p>
+            <form class="form_auth_style" id="auth" action="http://127.0.0.1:8000/user/login" method="post">
+              <label>Введите Ваш Логин</label>
+              <input name="login" form="auth" type="text" id="auth_name" placeholder="Введите Ваш Логин" required >
+              <label>Введите Ваш Пароль</label>
+              <input name="password" form="auth" type="password" id="auth_password" placeholder="Введите Пароль" required >
+              <button class="form_auth_button" form="auth" type="submit">Войти</button>
+            </form>
+            <form class="form_signup_style" id="signup" action="http://127.0.0.1:8000/user/signup" method="post">
+                <label>Введите Ваш Логин</label>
+                <input name="login" form="signup" type="text" id="signup_name" placeholder="Введите Ваш Логин" required >
+                <label>Введите Ваш Пароль</label>
+                <input name="password" form="signup" type="password" id="signup_password" placeholder="Введите Пароль" required >
+                <button class="form_signup_button" form="signup" type="submit">Войти</button>
+            </form>
+      </div>
+    </div>
+
+<!--    <script>-->
+<!--                const loginButton = document.getElementById("login-form-submit");-->
+<!--                const signupButton = document.getElementById("login-form-signup");-->
+
+<!--                loginButton.addEventListener("click", (e) => {-->
+<!--                    e.preventDefault();-->
+<!--                    const login = document.getElementById("auth_login");-->
+<!--                    const password = document.getElementById("auth_pass");-->
+
+<!--                    url_link = 'http://127.0.0.1:8000/user/login?login='+login+'/?password='+password-->
+<!--                    window.location.replace(url_link)-->
+<!--                })-->
+
+<!--                signupButton.addEventListener("click", (e) => {-->
+<!--                    e.preventDefault();-->
+<!--                    const login = document.getElementById("auth_login");-->
+<!--                    const password = document.getElementById("auth_pass");-->
+
+<!--                    url_link = 'http://127.0.0.1:8000/user/signup?login='+login+'/?password='+password-->
+<!--                    window.location.replace(url_link)-->
+<!--                })-->
+<!--    </script>-->
 
     {% endblock %}

@@ -7,7 +7,6 @@ from fastapi.templating import Jinja2Templates
 
 import os
 import json
-import pandas as pd
 import numpy as np
 
 import plotly
@@ -57,4 +56,4 @@ async def total_table(request: Request, service: BudgetService = Depends()):
 
     # plot
     fig = create_plot(total_dict['df'])
-    return templates.TemplateResponse("tables.html", {"request": request, "items": items, "plot": fig})
+    return templates.TemplateResponse("main_page.html", {"request": request, "items": items, "plot": fig})
