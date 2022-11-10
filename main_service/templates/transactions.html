@@ -1,0 +1,71 @@
+{% extends "layout_auth.html" %}
+
+    {% block content %}
+
+    {% if accounts %}
+    <form style="padding-top: 10px" class="ui form" id="transaction" method="post">
+    <div class="ui container two column grid" style="padding-top: 30px">
+        <div class="column">
+          <p class="ui header">Счета отправки</p>
+            <div class="menu">
+                  <table class="ui selectable inverted green celled left aligned table table-hover" id="bootstrap-table">
+                          <thead>
+                            <TR>
+                                <TH class="c1">Банк</TH>
+                                <TH class="c2">Номер счета</TH>
+                                <TH class="c3">Тип аккаунта</TH>
+                                <TH class="c4">Сумма</TH>
+                                <TH class="c5">Сумма перевода</TH>
+                            </TR>
+                          </thead>
+                          <tbody>
+                            {% for item in accounts %}
+                            <TR>
+                                <TD class="c1">{{item.bank}}</TD>
+                                <TD class="c2">{{item.number}}</TD>
+                                <TD class="c3">{{item.type}}</TD>
+                                {% if item.amount %}
+                                  <TD class="c4"><SPAN>{{item.amount}}</SPAN></TD>
+                                {% else %}
+                                  <TD class="c4"><SPAN>0</SPAN></TD>
+                                {% endif %}
+                                <TD class="c5">
+                                    <input name="password" form="transaction" type="text" id="{{item.id}}" placeholder="Сумма" required >
+                                </TD>
+                            </TR>
+                            {% endfor %}
+                         </tbody>
+                    </table>
+              </div>
+              <button style="padding-top: 30px; margin-top: 30px" class="ui centered primary button" form="transaction" type="submit">Перевод</button>
+        </div>
+        <div class="column">
+            <p class="ui error header">Итоговая сумма</p>
+            <div class="ui red message">
+                 <input name="text" form="transaction" type="text" placeholder="Сумма" required >
+            </div>
+            <p class="ui header">Конечный счет</p>
+              <div class="menu">
+                <select class="ui selectable ui red message aligned table table-hover" name="search-option">
+                    {% for item in accounts %}
+                    <option value="{{item.id}}">{{item.bank}}:{{item.number}}</option>
+                    {% endfor %}
+                 </select>
+              </div>
+        </div>
+    </div>
+    </form>
+    {% else %}
+        <div class="ui container two column grid" style="padding-top: 30px">
+        <div class="ui top attached info message column centered">
+            <div class="menu">
+              <div class="ui form container">
+                <p class="ui header">У вас нет подключенных банков</p>
+                <p class="ui header">Перейдите в раздел Главная</p>
+              </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% endblock %}

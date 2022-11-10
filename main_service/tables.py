@@ -14,8 +14,14 @@ class Client(Base):
 class User(Base):
     __tablename__ = 'users'
 
-    login = sa.Column(sa.String, primary_key=True)
+    id = sa.Column(sa.Integer, primary_key=True)
+    login = sa.Column(sa.String)
     password = sa.Column(sa.String)
+    name = sa.Column(sa.String)
+    token = sa.Column(sa.String)
+    green_bank_id = sa.Column(sa.Integer)
+    yellow_bank_id = sa.Column(sa.Integer)
+    red_bank_id = sa.Column(sa.Integer)
 
 class Budget(Base):
     __tablename__ = 'budgets'

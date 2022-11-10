@@ -1,25 +1,20 @@
-{% extends "layout.html" %}
+{% extends "layout_auth.html" %}
 
     {% block content %}
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 
+    <h3 class="ui container grey">Добро пожаловать, {{nickname}}</h3>
     <div class="ui container two column grid">
         <div class="column">
-
-            <table name="Общий баланс" class="ui selectable celled left aligned table table-hover" id="bootstrap-table">
-                <thead>
-                    <tr>
-                        <th>Общее</th>
-                        <th>Значение</th>
-                    </tr>
-                </thead>
+            <h4>Общий баланс</h4>
+            <table name="Общий баланс" class="ui selectable inverted grey celled left aligned table table-hover" id="bootstrap-table">
                 <tbody>
-                    {% for item in items %}
+                    {% for item in total_items %}
                     <TR>
-                        <TD class="c1">{{item.option}}</TD>
-                        {% if item.is_predict!=null %}
-                          <TD class="c2"><SPAN>{{item.amount}}</SPAN></TD>
+                        <TD class="c1">{{item.c1}}</TD>
+                        {% if item.c2 %}
+                          <TD class="c2"><SPAN>{{item.c2}}</SPAN></TD>
                         {% else %}
                           <TD class="c2"><SPAN>0</SPAN></TD>
                         {% endif %}
@@ -28,6 +23,171 @@
                  </tbody>
             </table>
 
+        </div>
+        <div class="column">
+            <h4>На текущий месяц</h4>
+            <table class="ui selectable inverted grey celled left aligned table table-hover">
+                <tbody>
+                    {% for item in detailed_items %}
+                    <TR>
+                        <TD class="c1">{{item.c1}}</TD>
+                        {% if item.c2 %}
+                          <TD class="c2"><SPAN>{{item.c2}}</SPAN></TD>
+                        {% else %}
+                          <TD class="c2"><SPAN>0</SPAN></TD>
+                        {% endif %}
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="ui container two column grid">
+        <div class="column">
+            <h4>Зеленый банк</h4>
+            {% if green_items %}
+            <table name="Зеленый банк" class="ui selectable inverted green celled left aligned table table-hover" id="bootstrap-table2">
+                <thead>
+                    <TR>
+                        <TH class="c1">Номер счета</TH>
+                        <TH class="c2">Тип счета</TH>
+                        <TH class="c3">Количество</TH>
+                    </TR>
+                </thead>
+                <tbody>
+                    {% for item in green_items %}
+                    <TR>
+                        <TD class="c1">{{item.c1}}</TD>
+                        <TD class="c2">{{item.c2}}</TD>
+                        <TD class="c3">{{item.c3}}</TD>
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+            {% else %}
+            <form class="ui form" id="to_green" action="http://127.0.0.1:8000/bank_connector/green/{{ token }}" method="get">
+                  <button class="ui selectable inverted green ai button" form="to_green" type="submit">Подключите банк</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="column">
+            {% if green_items %}
+            <h4>На текущий месяц</h4>
+            <table class="ui selectable inverted green celled left aligned table table-hover">
+                <tbody>
+                    {% for item in greens_detailed_items %}
+                    <TR>
+                        <TD class="c1">{{item.c1}}</TD>
+                        {% if item.c2 %}
+                          <TD class="c2"><SPAN>{{item.c2}}</SPAN></TD>
+                        {% else %}
+                          <TD class="c2"><SPAN>0</SPAN></TD>
+                        {% endif %}
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="ui container two column grid">
+        <div class="column">
+            <h4>Желтый банк</h4>
+            {% if yellow_items %}
+            <table name="Желтый банк" class="ui selectable inverted yellow celled left aligned table table-hover" id="bootstrap-table3">
+                <thead>
+                    <TR>
+                        <TH class="c1">Номер счета</TH>
+                        <TH class="c2">Тип счета</TH>
+                        <TH class="c3">Количество</TH>
+                    </TR>
+                </thead>
+                <tbody>
+                    {% for item in yellow_items %}
+                    <TR>
+                        <TD class="c1">{{item.c1}}</TD>
+                        <TD class="c2">{{item.c2}}</TD>
+                        <TD class="c3">{{item.c3}}</TD>
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+            {% else %}
+            <form class="ui form" id="to_yellow" action="http://127.0.0.1:8000/bank_connector/yellow/{{ token }}" method="get">
+                  <button class="ui selectable inverted yellow ai button" form="to_yellow" type="submit">Подключите банк</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="column">
+            {% if yellow_items %}
+            <h4>На текущий месяц</h4>
+            <table class="ui selectable inverted yellow celled left aligned table table-hover">
+                <tbody>
+                    {% for item in yellow_detailed_items %}
+                    <TR>
+                        <TD class="c1">{{item.c1}}</TD>
+                        {% if item.c2 %}
+                          <TD class="c2"><SPAN>{{item.c2}}</SPAN></TD>
+                        {% else %}
+                          <TD class="c2"><SPAN>0</SPAN></TD>
+                        {% endif %}
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="ui container two column grid">
+        <div class="column">
+            <h4>Красный банк</h4>
+            {% if red_items %}
+            <table name="Красный банк" class="ui selectable inverted red celled left aligned table table-hover" id="bootstrap-table4">
+                <thead>
+                    <TR>
+                        <TH class="c1">Номер счета</TH>
+                        <TH class="c2">Тип счета</TH>
+                        <TH class="c3">Количество</TH>
+                    </TR>
+                </thead>
+                <tbody>
+                    {% for item in red_items %}
+                    <TR>
+                        <TD class="c1">{{item.c1}}</TD>
+                        <TD class="c2">{{item.c2}}</TD>
+                        <TD class="c3">{{item.c3}}</TD>
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+            {% else %}
+            <form class="ui form" id="to_red" action="http://127.0.0.1:8000/bank_connector/red/{{ token }}" method="get">
+                <button class="ui selectable inverted red ai button" form="to_red" type="submit">Подключите банк</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="column">
+            {% if red_items %}
+            <h4>На текущий месяц</h4>
+            <table class="ui selectable inverted red celled left aligned table table-hover">
+                <tbody>
+                    {% for item in red_detailed_items %}
+                    <TR>
+                        <TD class="c1">{{item.c1}}</TD>
+                        {% if item.c2 %}
+                          <TD class="c2"><SPAN>{{item.c2}}</SPAN></TD>
+                        {% else %}
+                          <TD class="c2"><SPAN>0</SPAN></TD>
+                        {% endif %}
+                    </TR>
+                    {% endfor %}
+                 </tbody>
+            </table>
+            {% endif %}
         </div>
     </div>
     {% endblock %}

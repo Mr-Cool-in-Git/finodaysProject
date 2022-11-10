@@ -1,0 +1,19 @@
+{% extends "layout_auth.html" %}
+
+    {% block content %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <div>
+        <script>
+            var graphs = {{plot | safe}};
+            var layout = {
+                title: 'Годовой бюджет (руб.)',
+            };
+            Plotly.plot('bargraph',graphs,layout);
+        </script>
+    </div>
+
+    {% endblock %}

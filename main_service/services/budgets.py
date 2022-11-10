@@ -1,5 +1,6 @@
 from typing import List
 from fastapi import Depends
+
 import pickle
 import numpy as np
 
@@ -10,9 +11,6 @@ from .. import tables
 
 class BudgetService:
     def __init__(self, session: Session = Depends(get_session)):
-        print(os.getcwd())
-        with open(os.getcwd()+'/main_service/ml/model.pkl','rb') as wr:
-            self.model = pickle.load(wr)
         self.session = session
 
     def get_all(self) -> tables.Budget:

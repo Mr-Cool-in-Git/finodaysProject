@@ -1,0 +1,26 @@
+{% extends "layout_auth.html" %}
+
+    {% block content %}
+
+<div class="ui container two column grid" style="padding-top: 30px">
+    <div class="ui top attached info message column centered">
+        <div class="menu">
+          <div class="ui form container">
+            <p class="ui header">Подключение: {{bank_naming}}</p>
+            <form style="padding-top: 10px" class="ui form" id="auth" action="http://127.0.0.1:8000/connect/{{color}}/{{token}}" method="post">
+                <div class="field" >
+                  <label>Логин</label>
+                  <input name="login" form="auth" type="text" id="auth_name" placeholder="Введите логин" required >
+                </div>
+                <div class="field" >
+                  <label>Пароль</label>
+                  <input name="password" form="auth" type="password" id="auth_password" placeholder="Введите пароль" required >
+                </div>
+              <button class="ui {{color}} button" form="auth" type="submit">Войти</button>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}

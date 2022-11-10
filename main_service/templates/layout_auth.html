@@ -24,11 +24,17 @@
     </div>
     <!-- Линки -->
     <div class="ui inverted black container grid menu">
-            <a class="ui selectable item" href='http://127.0.0.1:8000/'>
-                Авторизация
-            </a>
-            <a class="ui selectable item" href='http://127.0.0.1:8000/main_page'>
+            <a class="ui selectable item" href='http://127.0.0.1:8000/main_page/{{token}}'>
                 Главная
+            </a>
+            <a class="ui selectable item" href='http://127.0.0.1:8000/analytics/{{token}}'>
+                Аналитика
+            </a>
+            <a class="ui selectable item" href='http://127.0.0.1:8000/transactions/{{token}}'>
+                Перевод средств
+            </a>
+            <a class="ui selectable item floated right" href='http://127.0.0.1:8000/'>
+                Выход
             </a>
     </div>
     <!--Сменяемый блок-->
