@@ -16,7 +16,7 @@ class UserService:
         self.session = session
         self.mapping_bank_url = {
             'green': 'https://mrcool-greenbank.herokuapp.com/',
-            'yellow': 'https://mrcool-yellowbank.herokuapp.com/',
+            'yellow': 'https://mrcool-yellow.herokuapp.com/',
             'red': 'https://mrcool-redbank.herokuapp.com/',
         }
 
@@ -155,7 +155,7 @@ class UserService:
         yellow_account_df, _ = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                                pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_yellow:
-            yellow_account_df, _ = self.get_account_info('https://mrcool-yellowbank.herokuapp.com',
+            yellow_account_df, _ = self.get_account_info('https://mrcool-yellow.herokuapp.com',
                                                                     id_yellow)
         yellow_account_df['bank'] = 'yellow'
 
