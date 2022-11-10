@@ -15,9 +15,9 @@ class UserService:
     def __init__(self, session: Session = Depends(get_session)):
         self.session = session
         self.mapping_bank_url = {
-            'green': 'mrcool-greenbank.herokuapp.com/',
-            'yellow': 'mrcool-yellowbank.herokuapp.com/',
-            'red': 'mrcool-redbank.herokuapp.com/',
+            'green': 'https://mrcool-greenbank.herokuapp.com/',
+            'yellow': 'https://mrcool-yellowbank.herokuapp.com/',
+            'red': 'https://mrcool-redbank.herokuapp.com/',
         }
 
     def connect_bank(self, token: str, bank: str, login: str, password: str):
@@ -148,14 +148,14 @@ class UserService:
         green_account_df, _ = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                              pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_green:
-            green_account_df, _ = self.get_account_info('mrcool-greenbank.herokuapp.com', id_green)
+            green_account_df, _ = self.get_account_info('https://mrcool-greenbank.herokuapp.com', id_green)
         green_account_df['bank'] = 'green'
 
         # yellow
         yellow_account_df, _ = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                                pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_yellow:
-            yellow_account_df, _ = self.get_account_info('mrcool-yellowbank.herokuapp.com',
+            yellow_account_df, _ = self.get_account_info('https://mrcool-yellowbank.herokuapp.com',
                                                                     id_yellow)
         yellow_account_df['bank'] = 'yellow'
 
@@ -163,7 +163,7 @@ class UserService:
         red_account_df, _ = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                          pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_red:
-            red_account_df, _ = self.get_account_info('mrcool-redbank.herokuapp.com', id_red)
+            red_account_df, _ = self.get_account_info('https://mrcool-redbank.herokuapp.com', id_red)
         red_account_df['bank'] = 'red'
 
         total_df = pd.concat([green_account_df, yellow_account_df, red_account_df], ignore_index=True)
@@ -176,21 +176,21 @@ class UserService:
         _, green_account_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                              pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_green:
-            _, green_account_df = self.get_account_info('mrcool-greenbank.herokuapp.com', id_green)
+            _, green_account_df = self.get_account_info('https://mrcool-greenbank.herokuapp.com', id_green)
         green_account_df['bank'] = 'green'
 
         # yellow
         _, yellow_account_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                                pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_yellow:
-            _, yellow_account_df = self.get_account_info('mrcool-yellowbank.herokuapp.com', id_yellow)
+            _, yellow_account_df = self.get_account_info('https://mrcool-yellowbank.herokuapp.com', id_yellow)
         yellow_account_df['bank'] = 'yellow'
 
         # red
         _, red_account_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                          pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_red:
-            _, red_account_df = self.get_account_info('mrcool-redbank.herokuapp.com', id_red)
+            _, red_account_df = self.get_account_info('https://mrcool-redbank.herokuapp.com', id_red)
         red_account_df['bank'] = 'red'
 
         total_df = pd.concat([green_account_df, yellow_account_df, red_account_df], ignore_index=True)
@@ -202,20 +202,20 @@ class UserService:
         green_account_df, green_history_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                              pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_green:
-            green_account_df, green_history_df = self.get_account_info('mrcool-greenbank.herokuapp.com', id_green)
+            green_account_df, green_history_df = self.get_account_info('https://mrcool-greenbank.herokuapp.com', id_green)
 
         # yellow
         yellow_account_df, yellow_history_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                                pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_yellow:
-            yellow_account_df, yellow_history_df = self.get_account_info('mrcool-yellowbank.herokuapp.com',
+            yellow_account_df, yellow_history_df = self.get_account_info('https://mrcool-yellowbank.herokuapp.com',
                                                                     id_yellow)
 
         # red
         red_account_df, red_history_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                          pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_red:
-            red_account_df, red_history_df = self.get_account_info('mrcool-redbank.herokuapp.com', id_red)
+            red_account_df, red_history_df = self.get_account_info('https://mrcool-redbank.herokuapp.com', id_red)
 
         total_sum = green_account_df.amount.sum() + yellow_account_df.amount.sum() + red_account_df.amount.sum()
         card_sum = (
