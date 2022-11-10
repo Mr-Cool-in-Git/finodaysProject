@@ -67,7 +67,7 @@
                  </tbody>
             </table>
             {% else %}
-            <form class="ui form" id="to_green" action="http://127.0.0.1:8000/bank_connector/green/{{ token }}" method="get">
+            <form class="ui form" id="to_green" action="https://mrcool-apijump.herokuapp.com/bank_connector/green/{{ token }}" method="get">
                   <button class="ui selectable inverted green ai button" form="to_green" type="submit">Подключите банк</button>
             </form>
             {% endif %}
