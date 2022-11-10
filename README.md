@@ -24,3 +24,12 @@ Fastapi, Rest API
 8. На странице Перевод средств можно перечислять со своих счетов на один счет банка (реализован фронт)
 9. На странице Аналитика показаны история ваших счетов
 
+## Release
+Запустить надо все, так как на хероку есть таймаут
+https://mrcool-yellow.herokuapp.com/docs
+https://mrcool-greenbank.herokuapp.com/docs
+https://mrcool-redbank.herokuapp.com/docs
+
+Сервис
+https://mrcool-apijump.herokuapp.com/ 
+
