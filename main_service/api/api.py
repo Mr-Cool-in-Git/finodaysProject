@@ -49,18 +49,29 @@ async def enter_user(login: str = Form(),
                      password: str = Form(), service: UserService = Depends()):
     id = service.get_token(login, password)
 
-    return fastapi.responses.RedirectResponse(
-        f'/main_page/{id}',
-        status_code=status.HTTP_302_FOUND)
+    if id:
+        return fastapi.responses.RedirectResponse(
+            f'/main_page/{id}',
+            status_code=status.HTTP_302_FOUND)
+    else:
+        return fastapi.responses.RedirectResponse(
+            f'/',
+            status_code=status.HTTP_302_FOUND)
 
 
 @router.post("/user/signup", tags=["user"])
 async def create_user(login: str = Form(), name: str = Form(), password: str = Form(), service: UserService = Depends()):
     id = service.auth_new_user(login, name, password)
 
-    return fastapi.responses.RedirectResponse(
-        f'/main_page/{id}',
-        status_code=status.HTTP_302_FOUND)
+
+    if id:
+        return fastapi.responses.RedirectResponse(
+            f'/main_page/{id}',
+            status_code=status.HTTP_302_FOUND)
+    else:
+        return fastapi.responses.RedirectResponse(
+            f'/',
+            status_code=status.HTTP_302_FOUND)
 
 
 @router.get("/main_page/{id}", tags=["page"])
@@ -144,24 +155,6 @@ def create_plot(init_df):
 
     data = []
 
-    # if green_df.shape[0] != 0:
-    #     data.append(go.Scatter(
-    #         x=green_df['date'],
-    #         y=green_df['amount'],
-    #     ))
-    #
-    # if yellow_df.shape[0] != 0:
-    #     data.append(go.Scatter(
-    #         x=yellow_df['date'],
-    #         y=yellow_df['amount'],
-    #     ))
-    #
-    # if red_df.shape[0] != 0:
-    #     data.append(go.Scatter(
-    #         x=red_df['date'],
-    #         y=red_df['amount'],
-    #     ))
-
     #if init_df.shape[0] != 0:
     data.append(go.Scatter(
         x=np.arange(0, init_df.shape[0]),
@@ -179,15 +172,6 @@ def analytics_page(token: str, request: Request, service: UserService = Depends(
      money_report = service.money_history(accounts_dict['green_bank_id'],
                                               accounts_dict['yellow_bank_id'],
                                               accounts_dict['red_bank_id'])
-
-     # acoounts = []
-     # for i in range(money_report.shape[0]):
-     #     an_item = dict(bank=money_report.loc[i,'bank'],
-     #                    number=money_report.loc[i,'number'],
-     #                    type=money_report.loc[i,'type'],
-     #                    amount=money_report.loc[i,'amount'],
-     #                    id=i)
-     #     acoounts.append(an_item)
 
      # plot
      fig = create_plot(money_report)
