@@ -8,7 +8,7 @@ import pandas as pd
 # h.update(b)
 # print(h.hexdigest())
 # #
-# response = requests.get(f'http://https://mrcool-greenbank.herokuapp.com/clients/auth?login=nick&password=12314')
+# response = requests.get(f'mrcool-greenbank.herokuapp.com/clients/auth?login=nick&password=12314')
 # data = response.json()
 #
 data = pd.DataFrame(columns=('number', 'type', 'amount'))
