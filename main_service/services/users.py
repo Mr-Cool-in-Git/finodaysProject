@@ -183,7 +183,7 @@ class UserService:
         _, yellow_account_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                                pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_yellow:
-            _, yellow_account_df = self.get_account_info('https://mrcool-yellowbank.herokuapp.com', id_yellow)
+            _, yellow_account_df = self.get_account_info('https://mrcool-yellow.herokuapp.com', id_yellow)
         yellow_account_df['bank'] = 'yellow'
 
         # red
@@ -208,7 +208,7 @@ class UserService:
         yellow_account_df, yellow_history_df = pd.DataFrame(columns=('number', 'type', 'amount')), \
                                                pd.DataFrame(columns=('date', 'amount', 'income', 'payment_kind'))
         if id_yellow:
-            yellow_account_df, yellow_history_df = self.get_account_info('https://mrcool-yellowbank.herokuapp.com',
+            yellow_account_df, yellow_history_df = self.get_account_info('https://mrcool-yellow.herokuapp.com',
                                                                     id_yellow)
 
         # red
