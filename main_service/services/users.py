@@ -52,9 +52,9 @@ class UserService:
                 .filter_by(login=login, password=password)
                 .first()
         )
-        if not user:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-        return user.id
+        if user:
+            return user.id
+        return None
 
     def get_token(self, login: str, password: str) -> tables.User:
         user = (
@@ -63,9 +63,9 @@ class UserService:
                 .filter_by(login=login, password=password)
                 .first()
         )
-        if not user:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-        return user.token
+        if user:
+            return user.token
+        return None
 
     def get_accounts(self, token: str):
         print(token)
@@ -93,9 +93,9 @@ class UserService:
                 .filter_by(token=token)
                 .first()
         )
-        if not user:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-        return user.name
+        if user:
+            return user.name
+        return None
 
     def _encoding_user(self, secret: str):
         h = hashlib.new('sha256')
